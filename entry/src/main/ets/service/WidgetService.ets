@@ -30,6 +30,7 @@ export class WidgetService {
   private static instance: WidgetService
   private billService = BillService.getInstance()
   private accountService = AccountService.getInstance()
+  private activeFormIds: Set<string> = new Set()
   
   private constructor() {}
   
@@ -38,6 +39,18 @@ export class WidgetService {
       WidgetService.instance = new WidgetService()
     }
     return WidgetService.instance
+  }
+  
+  // 注册活跃的桌面卡片
+  registerActiveForm(formId: string): void {
+    this.activeFormIds.add(formId)
+    console.info(`桌面卡片已注册: ${formId}, 当前活跃卡片数: ${this.activeFormIds.size}`)
+  }
+  
+  // 注销桌面卡片
+  unregisterActiveForm(formId: string): void {
+    this.activeFormIds.delete(formId)
+    console.info(`桌面卡片已注销: ${formId}, 当前活跃卡片数: ${this.activeFormIds.size}`)
   }
   
   /**
@@ -103,6 +116,16 @@ export class WidgetService {
         recentBills,
         lastUpdateTime: new Date().toISOString()
       }
+      
+      console.info('Widget data generated:', {
+        todayIncome,
+        todayExpense,
+        monthIncome,
+        monthExpense,
+        totalBalance,
+        recentBillsCount: recentBills.length
+      })
+      
       return widgetData
     } catch (error) {
       console.error('Failed to get widget data:', error)
@@ -132,8 +155,15 @@ export class WidgetService {
       }
       
       const newBill = new BillRecord(amount, BillType.INCOME, category, '快速记账')
+      newBill.accountId = defaultAccount.id
       
+      // 添加账单记录
       await this.billService.addBillRecord(newBill)
+      
+      // 更新账户余额
+      await this.accountService.updateAccountBalance(defaultAccount.id, amount)
+      
+      console.info(`Quick income added: ${amount}, account balance updated`)
       return true
     } catch (error) {
       console.error('Failed to quick add income:', error)
@@ -154,8 +184,15 @@ export class WidgetService {
       }
       
       const newBill = new BillRecord(amount, BillType.EXPENSE, category, '快速记账')
+      newBill.accountId = defaultAccount.id
       
+      // 添加账单记录
       await this.billService.addBillRecord(newBill)
+      
+      // 更新账户余额（支出为负数）
+      await this.accountService.updateAccountBalance(defaultAccount.id, -amount)
+      
+      console.info(`Quick expense added: ${amount}, account balance updated`)
       return true
     } catch (error) {
       console.error('Failed to quick add expense:', error)
@@ -164,16 +201,47 @@ export class WidgetService {
   }
   
   /**
-   * 更新卡片数据
+   * 更新指定卡片数据
    */
   async updateWidget(formId: string): Promise<void> {
     try {
       const widgetData = await this.getWidgetData()
       const formData = this.convertToFormData(widgetData)
       await formProvider.updateForm(formId, formBindingData.createFormBindingData(formData))
-      console.info('卡片数据更新成功')
+      console.info(`卡片数据更新成功: ${formId}`)
     } catch (error) {
-      console.error('卡片数据更新失败:', error)
+      console.error(`卡片数据更新失败: ${formId}`, error)
+    }
+  }
+  
+  /**
+   * 更新所有活跃的桌面卡片
+   */
+  async updateAllActiveWidgets(): Promise<void> {
+    try {
+      if (this.activeFormIds.size === 0) {
+        console.info('当前没有活跃的桌面卡片需要更新')
+        return
+      }
+      
+      const widgetData = await this.getWidgetData()
+      const formData = this.convertToFormData(widgetData)
+      const bindingData = formBindingData.createFormBindingData(formData)
+      
+      // 批量更新所有活跃的桌面卡片
+      const updatePromises = Array.from(this.activeFormIds).map(async (formId) => {
+        try {
+          await formProvider.updateForm(formId, bindingData)
+          console.info(`桌面卡片更新成功: ${formId}`)
+        } catch (error) {
+          console.error(`桌面卡片更新失败: ${formId}`, error)
+        }
+      })
+      
+      await Promise.all(updatePromises)
+      console.info(`所有活跃桌面卡片更新完成，共更新 ${this.activeFormIds.size} 个卡片`)
+    } catch (error) {
+      console.error('批量更新桌面卡片失败:', error)
     }
   }
   

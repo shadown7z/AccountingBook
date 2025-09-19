@@ -21,7 +21,16 @@ struct WidgetCard {
   // 加载卡片数据
   async loadWidgetData() {
     try {
-      this.widgetData = await this.widgetService.getWidgetData()
+      const newData = await this.widgetService.getWidgetData()
+      // 直接赋值更新状态
+      this.widgetData.todayIncome = newData.todayIncome
+      this.widgetData.todayExpense = newData.todayExpense
+      this.widgetData.monthIncome = newData.monthIncome
+      this.widgetData.monthExpense = newData.monthExpense
+      this.widgetData.totalBalance = newData.totalBalance
+      this.widgetData.recentBills = newData.recentBills
+      this.widgetData.lastUpdateTime = newData.lastUpdateTime
+      console.info('Widget data updated:', this.widgetData)
     } catch (error) {
       console.error('Failed to load widget data:', error)
     }

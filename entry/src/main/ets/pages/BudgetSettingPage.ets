@@ -6,7 +6,6 @@ import { router } from '@kit.ArkUI'
 import { BudgetService } from '../service/BudgetService'
 import { Budget, BudgetType, BudgetStatistics } from '../model/Budget'
 import { BillService } from '../service/BillService'
-
 @Entry
 @ComponentV2
 export struct BudgetSettingPage {
@@ -157,10 +156,17 @@ export struct BudgetSettingPage {
   @Builder
   buildNavigationBar() {
     Row() {
-      Image($r('sys.symbol.chevron_left'))
+      // Image($r('sys.symbol.chevron_left'))
+      //   .width(24)
+      //   .height(24)
+      //   .fillColor($r('app.color.text_primary'))
+      //   .onClick(() => {
+      //     this.goBack()
+      //   })
+      Text('<  ')
         .width(24)
         .height(24)
-        .fillColor($r('app.color.text_primary'))
+        .fontColor('#333333')
         .onClick(() => {
           this.goBack()
         })

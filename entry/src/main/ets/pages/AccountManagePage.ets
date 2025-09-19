@@ -106,14 +106,21 @@ export struct AccountManagePage {
   @Builder
   buildHeader() {
     Row() {
-      Image($r('sys.symbol.chevron_left'))
+      // Image($r('sys.symbol.chevron_left'))
+      //   .width(24)
+      //   .height(24)
+      //   .fillColor('#333333')
+      //   .onClick(() => {
+      //     this.goBack()
+      //   })
+      Text('<  ')
         .width(24)
         .height(24)
-        .fillColor($r('app.color.text_primary'))
+        .fontColor('#333333')
         .onClick(() => {
           this.goBack()
         })
-      
+
       Text('账户管理')
         .fontSize(18)
         .fontWeight(FontWeight.Medium)

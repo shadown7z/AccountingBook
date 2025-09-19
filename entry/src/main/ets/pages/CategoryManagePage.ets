@@ -3,7 +3,7 @@ import { HMRouter } from '@hadss/hmrouter'
 import { BillService } from '../service/BillService'
 import { BillCategory, BillType } from '../model/BillRecord'
 import { PagePath } from '../constants/PagePath'
-
+import { router } from '@kit.ArkUI'
 @Entry
 @HMRouter({ pageUrl: PagePath.CATEGORY_MANAGE })
 @ComponentV2
@@ -58,14 +58,6 @@ export struct CategoryManagePage {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.background_color'))
-    .bindSheet($$this.showAddDialog, this.addCategoryDialog, {
-      height: 400,
-      dragBar: true
-    })
-    .bindSheet($$this.showEditDialog, this.editCategoryDialog, {
-      height: 400,
-      dragBar: true
-    })
   }
 
   // 构建导航栏
@@ -78,6 +70,7 @@ export struct CategoryManagePage {
         .fontColor($r('app.color.primary_color'))
         .onClick(() => {
           // 返回上一页
+          router.back()
         })
       
       Text('分类管理')
@@ -225,11 +218,19 @@ export struct CategoryManagePage {
             .borderRadius(16)
             .padding({ left: 12, right: 12, top: 6, bottom: 6 })
             .onClick(() => {
+              // 确保其他弹窗都关闭
+              this.showAddDialog = false
+              // 设置编辑数据
               this.editingCategory = category
               this.newCategoryName = category.name
               this.newCategoryIcon = category.icon
               this.newCategoryColor = category.color
+              // 显示编辑弹窗
               this.showEditDialog = true
+            })
+            .bindSheet($$this.showEditDialog, this.editCategoryDialog, {
+              height: 400,
+              dragBar: true
             })
           
           Button('删除')
@@ -270,9 +271,19 @@ export struct CategoryManagePage {
       .height(48)
       .margin({ left: 16, right: 16, bottom: 16 })
       .onClick(() => {
+        // 确保其他弹窗都关闭
+        this.showEditDialog = false
+        this.editingCategory = null
+        // 重置新增分类数据
         this.newCategoryName = ''
         this.newCategoryIcon = '📝'
+        this.newCategoryColor = '#FF6B6B'
+        // 显示添加弹窗
         this.showAddDialog = true
+      })
+      .bindSheet($$this.showAddDialog, this.addCategoryDialog, {
+        height: 400,
+        dragBar: true
       })
   }
 
@@ -328,37 +339,6 @@ export struct CategoryManagePage {
         .columnsGap(8)
         .width('100%')
         .height(120)
-      }
-      .width('100%')
-      .alignItems(HorizontalAlign.Start)
-      
-      // 颜色选择
-      Column({ space: 8 }) {
-        Text('选择颜色')
-          .fontSize(14)
-          .fontColor($r('app.color.text_secondary'))
-          .alignSelf(ItemAlign.Start)
-        
-        Grid() {
-          ForEach(this.commonColors, (color: string) => {
-            GridItem() {
-              Circle({ width: 36, height: 36 })
-                .fill(color)
-                .border({
-                  width: this.newCategoryColor === color ? 3 : 1,
-                  color: this.newCategoryColor === color ? '#333333' : '#E0E0E0'
-                })
-                .onClick(() => {
-                  this.newCategoryColor = color
-                })
-            }
-          })
-        }
-        .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
-        .rowsGap(8)
-        .columnsGap(8)
-        .width('100%')
-        .height(80)
       }
       .width('100%')
       .alignItems(HorizontalAlign.Start)

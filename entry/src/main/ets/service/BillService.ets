@@ -155,6 +155,10 @@ export class BillService {
       const amount = record.type === BillType.INCOME ? record.amount : -record.amount
       await AccountService.getInstance().updateAccountBalance(record.accountId, amount)
       
+      // 触发桌面卡片数据同步更新
+      await this.notifyWidgetUpdate()
+      
+      console.info('账单记录添加成功，已触发桌面卡片更新')
       return true
     } catch (error) {
       console.error('添加账单记录失败:', error)
@@ -387,5 +391,21 @@ export class BillService {
   // 格式化金额显示
   static formatAmount(amount: number): string {
     return amount.toFixed(2)
+  }
+
+  // 通知桌面卡片更新
+  private async notifyWidgetUpdate(): Promise<void> {
+    try {
+      // 导入WidgetService并触发更新
+      const widgetServiceModule = await import('../service/WidgetService')
+      const widgetService = widgetServiceModule.WidgetService.getInstance()
+      
+      // 更新所有活跃的桌面卡片
+      await widgetService.updateAllActiveWidgets()
+      
+      console.info('桌面卡片数据同步更新完成')
+    } catch (error) {
+      console.error('桌面卡片更新失败:', error)
+    }
   }
 }

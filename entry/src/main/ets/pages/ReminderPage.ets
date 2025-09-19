@@ -84,6 +84,10 @@ struct ReminderPage {
 
   // 编辑提醒
   private editReminder(reminder: ReminderConfig) {
+    // 确保其他弹窗都关闭
+    this.showAddDialog = false
+    this.showTimePickerDialog = false
+    // 设置编辑数据
     this.editingReminder = {
       id: reminder.id,
       type: reminder.type,
@@ -94,6 +98,7 @@ struct ReminderPage {
       enabled: reminder.enabled,
       repeatDays: reminder.repeatDays
     }
+    // 显示编辑弹窗
     this.showEditDialog = true
   }
 
@@ -190,6 +195,13 @@ struct ReminderPage {
         .height(40)
         .backgroundColor(Color.Transparent)
         .onClick(() => {
+          // 确保其他弹窗都关闭
+          this.showEditDialog = false
+          this.showTimePickerDialog = false
+          this.editingReminder = null
+          // 重置新增提醒数据
+          this.resetNewReminderData()
+          // 显示添加弹窗
           this.showAddDialog = true
         })
       }

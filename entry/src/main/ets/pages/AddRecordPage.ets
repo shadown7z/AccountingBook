@@ -116,6 +116,7 @@ export struct AddRecordPage {
 
     const success = await this.billService.addBillRecord(record)
     if (success) {
+      console.info('记账成功，桌面卡片数据将自动同步更新')
       this.hideKeyboardWithAnimation()
       // 延迟返回，等待键盘隐藏动画完成
       setTimeout(() => {
@@ -160,10 +161,13 @@ export struct AddRecordPage {
       .layoutWeight(1)
       .padding({ left: 16, right: 16, top: 16, bottom: 8 })
       .onClick(() => {
-        // 点击空白区域隐藏键盘
+        // 点击空白区域隐藏键盘和弹窗
         if (this.showKeyboard) {
           this.hideKeyboardWithAnimation()
         }
+        // 关闭所有弹窗
+        this.showCategoryPicker = false
+        this.showAccountPicker = false
       })
       
       // 数字键盘覆盖层
@@ -250,12 +254,6 @@ export struct AddRecordPage {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.background_color'))
-    .bindSheet($$this.showCategoryPicker, this.buildCategoryPicker(), {
-      height: 400
-    })
-    .bindSheet($$this.showAccountPicker, this.buildAccountPicker(), {
-      height: 300
-    })
   }
 
   // 构建顶部导航栏
@@ -387,13 +385,19 @@ export struct AddRecordPage {
       .backgroundColor($r('app.color.background_color'))
       .borderRadius(8)
       .onClick(() => {
-        this.showCategoryPicker = true
-      })
+          // 确保其他弹窗都关闭
+          this.showAccountPicker = false
+          // 显示分类选择弹窗
+          this.showCategoryPicker = true
+        })
     }
     .width('100%')
     .padding(16)
     .backgroundColor($r('app.color.card_background'))
     .borderRadius(8)
+    .bindSheet($$this.showCategoryPicker, this.buildCategoryPicker(), {
+      height: 400
+    })
   }
 
   // 构建备注输入
@@ -528,13 +532,19 @@ export struct AddRecordPage {
       .backgroundColor($r('app.color.background_color'))
       .borderRadius(8)
       .onClick(() => {
-        this.showAccountPicker = true
-      })
+          // 确保其他弹窗都关闭
+          this.showCategoryPicker = false
+          // 显示账户选择弹窗
+          this.showAccountPicker = true
+        })
     }
     .width('100%')
     .padding(16)
     .backgroundColor($r('app.color.card_background'))
     .borderRadius(8)
+    .bindSheet($$this.showAccountPicker, this.buildAccountPicker(), {
+      height: 300
+    })
   }
 
   // 构建账户选择器

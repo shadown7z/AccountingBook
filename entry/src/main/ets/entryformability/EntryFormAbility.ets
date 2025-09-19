@@ -35,6 +35,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
       const formId = want.parameters?.[formInfo.FormParam.IDENTITY_KEY] as string
       
       if (formId) {
+        // 注册活跃的桌面卡片
+        this.widgetService.registerActiveForm(formId)
         // 异步更新卡片数据
         this.updateFormData(formId)
       }
@@ -143,10 +145,12 @@ export default class EntryFormAbility extends FormExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, `onRemoveForm called, formId: ${formId}`)
     
     try {
+      // 注销活跃的桌面卡片
+      this.widgetService.unregisterActiveForm(formId)
       // 清理卡片相关资源
-      // 这里可以添加清理逻辑，比如取消定时器等
+      console.info('Form removed successfully:', formId)
     } catch (error) {
-      hilog.error(DOMAIN_NUMBER, TAG, `onRemoveForm error: ${error}`)
+      console.error('Error removing form:', error)
     }
   }
   

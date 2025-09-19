@@ -2,7 +2,7 @@ import { HMRouter } from '@hadss/hmrouter'
 import { BillService } from '../service/BillService'
 import { BillRecord, BillType } from '../model/BillRecord'
 import { PAGE_PATH } from '../constants/PagePath'
-
+import { router } from '@kit.ArkUI'
 // 趋势数据映射值接口
 interface TrendMapValue {
   income: number
@@ -160,6 +160,7 @@ export struct StatisticsPage {
         .backgroundColor(Color.Transparent)
         .onClick(() => {
           // 返回上一页
+          router.back()
         })
         
         Text('数据统计')

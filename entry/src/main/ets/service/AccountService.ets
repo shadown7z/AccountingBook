@@ -251,6 +251,8 @@ export class AccountService {
 
     try {
       await this.rdbStore.executeSql(updateSql, [amount, Date.now(), accountId])
+      
+      console.info(`账户余额更新成功: accountId=${accountId}, amount=${amount}`)
       return true
     } catch (error) {
       console.error('更新账户余额失败:', error)
