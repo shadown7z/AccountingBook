@@ -9,6 +9,7 @@
     "pages/BackupPage",
     "pages/CategoryManagePage",
     "pages/ExportPage",
-    "pages/ReminderPage"
+    "pages/ReminderPage",
+    "pages/QRCodePage"
   ]
 }

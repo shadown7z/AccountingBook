@@ -144,12 +144,6 @@ export struct BudgetSettingPage {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.background_color'))
-    .bindSheet($$this.showAddBudgetSheet, this.buildAddBudgetSheet(), {
-      height: 500
-    })
-    .bindSheet($$this.showEditBudgetSheet, this.buildEditBudgetSheet(), {
-      height: 400
-    })
   }
 
   // 构建导航栏
@@ -377,6 +371,9 @@ export struct BudgetSettingPage {
           .onClick(() => {
             this.startEditBudget(budget)
           })
+          .bindSheet($$this.showEditBudgetSheet, this.buildEditBudgetSheet(), {
+            height: 400
+          })
         
         Button('删除')
           .fontSize(12)
@@ -415,6 +412,9 @@ export struct BudgetSettingPage {
       .margin({ bottom: 20 })
       .onClick(() => {
         this.showAddBudgetSheet = true
+      })
+      .bindSheet($$this.showAddBudgetSheet, this.buildAddBudgetSheet(), {
+        height: 500
       })
   }
 

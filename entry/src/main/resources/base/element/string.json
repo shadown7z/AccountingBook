@@ -17,6 +17,10 @@
       "value": "用于发送记账提醒通知，帮助您养成良好的记账习惯"
     },
     {
+      "name": "permission_write_imagevideo_reason",
+      "value": "用于保存二维码图片到相册，方便您分享和使用"
+    },
+    {
       "name": "home_title",
       "value": "熊宝记账"
     },

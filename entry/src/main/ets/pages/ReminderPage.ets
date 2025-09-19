@@ -86,6 +86,7 @@ struct ReminderPage {
   private editReminder(reminder: ReminderConfig) {
     // 确保其他弹窗都关闭
     this.showAddDialog = false
+    this.showEditDialog = false
     this.showTimePickerDialog = false
     // 设置编辑数据
     this.editingReminder = {
@@ -108,7 +109,6 @@ struct ReminderPage {
       const success = await this.reminderService.updateReminder(this.editingReminder)
       if (success) {
         await this.loadReminders()
-        this.showEditDialog = false
         this.editingReminder = null
       }
     }
@@ -175,7 +175,7 @@ struct ReminderPage {
         .height(40)
         .backgroundColor(Color.Transparent)
         .onClick(() => {
-          router.back()
+          router.push({url:"pages/Index"})
         })
 
         Text('提醒设置')
@@ -203,6 +203,11 @@ struct ReminderPage {
           this.resetNewReminderData()
           // 显示添加弹窗
           this.showAddDialog = true
+        })
+        .bindSheet($$this.showAddDialog, this.addReminderDialog(), {
+          height: 500,
+          dragBar: true,
+          backgroundColor: $r('app.color.white')
         })
       }
       .width('100%')
@@ -266,6 +271,11 @@ struct ReminderPage {
                     this.editReminder(reminder)
                   })
                   .margin({ right: 8 })
+                  // .bindSheet($$this.showEditDialog, this.editReminderDialog(), {
+                  //   height: 500,
+                  //   dragBar: true,
+                  //   backgroundColor: $r('app.color.white')
+                  // })
 
                   // 开关
                   Toggle({ type: ToggleType.Switch, isOn: reminder.enabled })
@@ -314,21 +324,21 @@ struct ReminderPage {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.background'))
-    .bindSheet($$this.showAddDialog, this.addReminderDialog(), {
-      height: 500,
-      dragBar: true,
-      backgroundColor: $r('app.color.white')
-    })
+    // .bindSheet($$this.showAddDialog, this.addReminderDialog(), {
+    //   height: 500,
+    //   dragBar: true,
+    //   backgroundColor: $r('app.color.white')
+    // })
     .bindSheet($$this.showEditDialog, this.editReminderDialog(), {
       height: 500,
       dragBar: true,
       backgroundColor: $r('app.color.white')
     })
-    .bindSheet($$this.showTimePickerDialog, this.timePickerDialog(), {
-      height: 400,
-      dragBar: true,
-      backgroundColor: $r('app.color.white')
-    })
+    // .bindSheet($$this.showTimePickerDialog, this.timePickerDialog(), {
+    //   height: 400,
+    //   dragBar: true,
+    //   backgroundColor: $r('app.color.white')
+    // })
   }
 
   // 删除按钮
@@ -460,6 +470,11 @@ struct ReminderPage {
             .onClick(() => {
               this.selectTime(false)
             })
+            .bindSheet($$this.showTimePickerDialog, this.timePickerDialog(), {
+              height: 400,
+              dragBar: true,
+              backgroundColor: $r('app.color.white')
+            })
         }
         .width('100%')
         .margin({ bottom: 20 })
@@ -476,6 +491,7 @@ struct ReminderPage {
           .layoutWeight(1)
           .onClick(() => {
             this.showAddDialog = false
+            this.showEditDialog = false
             this.resetNewReminderData()
           })
         
@@ -537,6 +553,12 @@ struct ReminderPage {
               .backgroundColor(Color.Transparent)
               .onClick(() => {
                 this.selectTime(true)
+                this.showTimePickerDialog = true
+              })
+              .bindSheet($$this.showTimePickerDialog, this.timePickerDialog(), {
+                height: 400,
+                dragBar: true,
+                backgroundColor: $r('app.color.white')
               })
           }
           .width('100%')
@@ -583,10 +605,11 @@ struct ReminderPage {
             .borderRadius(8)
             .layoutWeight(1)
             .onClick(() => {
+              this.showAddDialog = false
               this.showEditDialog = false
               this.editingReminder = null
+              router.push({url:"pages/ReminderPage"})
             })
-          
           Button('保存')
             .fontSize(16)
             .fontColor(Color.White)
@@ -596,6 +619,7 @@ struct ReminderPage {
             .margin({ left: 12 })
             .onClick(() => {
               this.saveEditedReminder()
+              this.showEditDialog = false
             })
         }
         .width('100%')

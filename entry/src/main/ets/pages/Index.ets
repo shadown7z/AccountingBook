@@ -6,6 +6,7 @@ import { BudgetService } from '../service/BudgetService'
 import { Budget, BudgetStatistics } from '../model/Budget'
 import { PagePath } from '../constants/PagePath'
 import { router } from '@kit.ArkUI'
+import { HMRouterMgr } from '@hadss/hmrouter'
 
 @Entry
 @ComponentV2
@@ -81,6 +82,9 @@ struct Index {
           // 提醒设置入口
           this.buildReminderEntry()
           
+          // 反馈中心入口
+          this.buildFeedbackEntry()
+          
           // 最近记录
           this.buildRecentRecords()
         }
@@ -101,7 +105,7 @@ struct Index {
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
         .fontColor($r('app.color.text_primary'))
-        .layoutWeight(1)
+        .textAlign(TextAlign.Center)
       
       // 导出按钮
       // Button('导出')
@@ -120,7 +124,7 @@ struct Index {
     .width('100%')
     .height(56)
     .padding({ left: 16, right: 16 })
-    .justifyContent(FlexAlign.SpaceBetween)
+    .justifyContent(FlexAlign.Center)
     .alignItems(VerticalAlign.Center)
     .backgroundColor($r('app.color.primary_color'))
   }
@@ -740,5 +744,47 @@ struct Index {
       offsetX: 0,
       offsetY: 2
     })
+  }
+
+  // 构建反馈中心入口
+  @Builder
+  buildFeedbackEntry() {
+    Row() {
+      Text('💬')
+        .fontSize(20)
+        .margin({ right: 12 })
+      
+      Text('反馈中心')
+        .fontSize(16)
+        .fontWeight(FontWeight.Medium)
+        .fontColor($r('app.color.text_primary'))
+        .layoutWeight(1)
+      
+      Text('意见建议')
+        .fontSize(14)
+        .fontColor($r('app.color.primary_color'))
+    }
+    .width('100%')
+    .padding(16)
+    .backgroundColor($r('app.color.card_background'))
+    .borderRadius(12)
+    .shadow({
+      radius: 8,
+      color: '#1A000000',
+      offsetX: 0,
+      offsetY: 2
+    })
+    .onClick(() => {
+      this.navigateToFeedback()
+    })
+  }
+
+  // 导航到反馈页面
+  private navigateToFeedback() {
+    // 跳转到企业微信二维码页面
+    // HMRouterMgr.push({
+    //   pageUrl: PagePath.QRCODE
+    // })
+    router.push({url:"pages/QRCodePage"})
   }
 }

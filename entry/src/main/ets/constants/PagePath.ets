@@ -12,6 +12,7 @@ export class PagePath {
   static readonly CATEGORY_MANAGE = 'pages/CategoryManagePage'
   static readonly EXPORT = 'pages/ExportPage'
   static readonly REMINDER = 'pages/ReminderPage'
+  static readonly QRCODE = 'pages/QRCodePage'
 }
 
 // 兼容旧的PAGE_PATH常量
