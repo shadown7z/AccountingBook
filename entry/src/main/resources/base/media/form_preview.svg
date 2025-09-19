@@ -1,0 +1,43 @@
+<svg width="144" height="144" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="144" height="144" rx="16" fill="#FFFFFF"/>
+  <rect x="2" y="2" width="140" height="140" rx="14" stroke="#E0E0E0" stroke-width="2"/>
+  
+  <!-- 熊宝图标 -->
+  <circle cx="36" cy="36" r="12" fill="#FF9800"/>
+  <circle cx="32" cy="32" r="2" fill="#333333"/>
+  <circle cx="40" cy="32" r="2" fill="#333333"/>
+  <path d="M32 40 Q36 44 40 40" stroke="#333333" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- 标题 -->
+  <text x="56" y="32" font-family="PingFang SC" font-size="14" font-weight="600" fill="#333333">熊宝记账</text>
+  <text x="56" y="46" font-family="PingFang SC" font-size="10" fill="#666666">快速记账</text>
+  
+  <!-- 今日数据区域 -->
+  <rect x="12" y="60" width="120" height="32" rx="8" fill="#F5F5F5"/>
+  
+  <!-- 收入 -->
+  <text x="20" y="72" font-family="PingFang SC" font-size="8" fill="#666666">今日收入</text>
+  <text x="20" y="84" font-family="PingFang SC" font-size="12" font-weight="600" fill="#4CAF50">+1,200.00</text>
+  
+  <!-- 支出 -->
+  <text x="88" y="72" font-family="PingFang SC" font-size="8" fill="#666666">今日支出</text>
+  <text x="88" y="84" font-family="PingFang SC" font-size="12" font-weight="600" fill="#FF5722">-680.50</text>
+  
+  <!-- 快速操作按钮 -->
+  <rect x="12" y="100" width="32" height="20" rx="4" fill="#4CAF50"/>
+  <text x="20" y="112" font-family="PingFang SC" font-size="8" fill="#FFFFFF">收入</text>
+  
+  <rect x="48" y="100" width="32" height="20" rx="4" fill="#FF5722"/>
+  <text x="56" y="112" font-family="PingFang SC" font-size="8" fill="#FFFFFF">支出</text>
+  
+  <rect x="84" y="100" width="32" height="20" rx="4" fill="#2196F3"/>
+  <text x="92" y="112" font-family="PingFang SC" font-size="8" fill="#FFFFFF">打开</text>
+  
+  <!-- 余额信息 -->
+  <text x="20" y="132" font-family="PingFang SC" font-size="8" fill="#666666">账户余额</text>
+  <text x="20" y="142" font-family="PingFang SC" font-size="10" font-weight="600" fill="#333333">¥8,520.50</text>
+  
+  <text x="88" y="132" font-family="PingFang SC" font-size="8" fill="#666666">本月结余</text>
+  <text x="88" y="142" font-family="PingFang SC" font-size="10" font-weight="600" fill="#4CAF50">+519.50</text>
+</svg>

@@ -1,0 +1,112 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFF8E1"
+    },
+    {
+      "name": "primary_color",
+      "value": "#FF8A65"
+    },
+    {
+      "name": "primary_dark",
+      "value": "#FF5722"
+    },
+    {
+      "name": "accent_color",
+      "value": "#FFB74D"
+    },
+    {
+      "name": "background_color",
+      "value": "#FFF8E1"
+    },
+    {
+      "name": "card_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_primary",
+      "value": "#333333"
+    },
+    {
+      "name": "text_secondary",
+      "value": "#666666"
+    },
+    {
+      "name": "income_color",
+      "value": "#4CAF50"
+    },
+    {
+      "name": "expense_color",
+      "value": "#F44336"
+    },
+    {
+      "name": "divider_color",
+      "value": "#E0E0E0"
+    },
+    {
+      "name": "input_background",
+      "value": "#F5F5F5"
+    },
+    {
+      "name": "brand_primary",
+      "value": "#FF8A65"
+    },
+    {
+      "name": "text_tertiary",
+      "value": "#999999"
+    },
+    {
+      "name": "error_color",
+      "value": "#F44336"
+    },
+    {
+      "name": "icon_background",
+      "value": "#F0F0F0"
+    },
+    {
+      "name": "button_secondary",
+      "value": "#E0E0E0"
+    },
+    {
+      "name": "background",
+      "value": "#FFF8E1"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "divider",
+      "value": "#E0E0E0"
+    },
+    {
+      "name": "background_primary",
+      "value": "#FFF8E1"
+    },
+    {
+      "name": "background_secondary",
+      "value": "#F5F5F5"
+    },
+    {
+      "name": "success_color",
+      "value": "#4CAF50"
+    },
+    {
+      "name": "warning_color",
+      "value": "#FF9800"
+    },
+    {
+      "name": "tag_background",
+      "value": "#E3F2FD"
+    },
+    {
+      "name": "text_hint",
+      "value": "#CCCCCC"
+    },
+    {
+      "name": "primary_light",
+      "value": "#FFAB91"
+    }
+  ]
+}

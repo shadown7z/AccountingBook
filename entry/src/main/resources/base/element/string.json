@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "熊宝记账 - 简单易用的个人记账应用"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "熊宝记账主界面"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "熊宝记账"
+    },
+    {
+      "name": "permission_notification_reason",
+      "value": "用于发送记账提醒通知，帮助您养成良好的记账习惯"
+    },
+    {
+      "name": "home_title",
+      "value": "熊宝记账"
+    },
+    {
+      "name": "total_balance",
+      "value": "总余额"
+    },
+    {
+      "name": "monthly_income",
+      "value": "本月收入"
+    },
+    {
+      "name": "monthly_expense",
+      "value": "本月支出"
+    },
+    {
+      "name": "quick_record",
+      "value": "快速记账"
+    },
+    {
+      "name": "recent_records",
+      "value": "最近记录"
+    },
+    {
+      "name": "income",
+      "value": "收入"
+    },
+    {
+      "name": "expense",
+      "value": "支出"
+    },
+    {
+      "name": "add_record",
+      "value": "记一笔"
+    },
+    {
+      "name": "view_all",
+      "value": "查看全部"
+    },
+    {
+      "name": "no_records",
+      "value": "暂无记录"
+    }
+  ]
+}

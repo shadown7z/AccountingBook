@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AddRecordPage",
+    "pages/BillListPage",
+    "pages/AccountManagePage",
+    "pages/BudgetSettingPage",
+    "pages/StatisticsPage",
+    "pages/BackupPage",
+    "pages/CategoryManagePage",
+    "pages/ExportPage",
+    "pages/ReminderPage"
+  ]
+}

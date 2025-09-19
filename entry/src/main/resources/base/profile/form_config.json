@@ -1,0 +1,39 @@
+{
+  "forms": [
+    {
+      "name": "widget",
+      "description": "熊宝记账桌面卡片",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "metadata": [
+        {
+          "name": "ohos.form.displayName",
+          "value": "熊宝记账"
+        },
+        {
+          "name": "ohos.form.description",
+          "value": "快速记账和数据展示"
+        },
+        {
+          "name": "ohos.form.previewImage",
+          "value": "$media:form_preview"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "app": {
+    "bundleName": "com.shadown7z.accountingbook",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:zR",
+    "label": "$string:app_name"
+  }
+}
