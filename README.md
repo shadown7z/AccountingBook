@@ -183,12 +183,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-## 📞 联系我们
-
-- **项目主页**：[GitHub Repository]
-- **问题反馈**：[Issues]
-- **企业微信**：扫描应用内二维码
-
 ---
 
 **感谢您使用熊宝记账！** 🎉
